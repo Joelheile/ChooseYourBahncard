@@ -5,6 +5,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import {
   Select,
   SelectContent,
@@ -21,6 +22,7 @@ export const InputForm = () => {
   const [age, setAge] = useState("")
   const [daysUntilTrip, setDaysUntilTrip] = useState("")
   const [ticketType, setTicketType] = useState("")
+  const [classType, setClassType] = useState("")
   const [bahnCardSuggestion, setBahnCardSuggestion] = useState("")
 
   const bahnCardPrices = {
@@ -70,9 +72,9 @@ export const InputForm = () => {
       case "BahnCard 50, 1st Class":
         return "../../components/bahncardimages/bahncard50-1st"
       case "BahnCard 100, 2nd Class":
-        return "../../components/bahncardimages/bahncard100-2nd"; 
+        return "../../components/bahncardimages/bahncard100-2nd"
       case "BahnCard 100, 1st Class":
-        return "../../components/bahncardimages/bahncard100-1st"; 
+        return "../../components/bahncardimages/bahncard100-1st"
       default:
         return ""
     }
@@ -138,6 +140,20 @@ export const InputForm = () => {
               setDaysUntilTrip(e.currentTarget.value)
             }}
           />
+        </div>
+        <div className="grid w-full max-w-sm items-center gap-1.5">
+          <Label>Which class do you you usually in?</Label>
+
+          <RadioGroup defaultValue="option-one">
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="option-one" id="option-one" />
+              <Label htmlFor="first-class">First Class</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="option-two" id="option-two" />
+              <Label htmlFor="second-class">Second Class</Label>
+            </div>
+          </RadioGroup>
         </div>
 
         <div className="grid w-full max-w-sm items-center gap-1.5">
