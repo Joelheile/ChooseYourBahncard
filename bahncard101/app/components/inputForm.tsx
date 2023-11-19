@@ -144,13 +144,13 @@ export const InputForm = () => {
         <div className="grid w-full max-w-sm items-center gap-1.5">
           <Label>Which class do you you usually in?</Label>
 
-          <RadioGroup defaultValue="option-one">
+          <RadioGroup value={classType} onValueChange={(e) => setClassType(e)}>
             <div className="flex items-center space-x-2">
-              <RadioGroupItem value="option-one" id="option-one" />
+              <RadioGroupItem value="first-class" id="first-class" />
               <Label htmlFor="first-class">First Class</Label>
             </div>
             <div className="flex items-center space-x-2">
-              <RadioGroupItem value="option-two" id="option-two" />
+              <RadioGroupItem value="second-class" id="second-class" />
               <Label htmlFor="second-class">Second Class</Label>
             </div>
           </RadioGroup>
