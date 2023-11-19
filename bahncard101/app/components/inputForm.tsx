@@ -24,21 +24,21 @@ export const InputForm = () => {
   const [bahnCardSuggestion, setBahnCardSuggestion] = useState("")
 
   const bahnCardPrices = {
-    'BahnCard 25, 2nd Class': 59.90, // 25% discount on Flexpreis and Sparangebote&#8203;``【oaicite:8】``&#8203;
-    'BahnCard 25, 1st Class': 121.00, // 25% discount on Flexpreis and Sparangebote&#8203;``【oaicite:7】``&#8203;
-    'BahnCard 50, 2nd Class': 244.00, // 50% discount on Flexpreis and 25% on Sparangebote&#8203;``【oaicite:6】``&#8203;
-    'BahnCard 50, 1st Class': 492.00, // 50% discount on Flexpreis and 25% on Sparangebote&#8203;``【oaicite:5】``&#8203;
-    'Probe BahnCard 25, 2nd Class': 17.90, // Test BahnCard offering savings from the first journey&#8203;``【oaicite:4】``&#8203;
-    'Probe BahnCard 25, 1st Class': 36.90, // Test BahnCard offering savings from the first journey&#8203;``【oaicite:3】``&#8203;
-    'Probe BahnCard 50, 2nd Class': 72.90, // Test BahnCard offering savings from the first journey&#8203;``【oaicite:2】``&#8203;
-    'Probe BahnCard 50, 1st Class': 146.00, // Test BahnCard offering savings from the first journey&#8203;``【oaicite:1】``&#8203;
-    'BahnCard 100, 2nd Class': 4339.00, // Unlimited travel across Germany for one year&#8203;``【oaicite:0】``&#8203;
-    'Jugend BahnCard 25': 7.90, // For 6- to 18-year-olds
-    'Senioren BahnCard 25, 2nd Class': 38.90,
-    'Senioren BahnCard 25, 1st Class': 77.90,
-    'Senioren BahnCard 50, 2nd Class': 122.00,
-    'Senioren BahnCard 50, 1st Class': 241.00, // For seniors
-  };
+    "BahnCard 25, 2nd Class U27": 36.9,
+    "BahnCard 25, 1st Class U27": 77.9,
+    "BahnCard 50, 2nd Class U27": 69.9,
+    "BahnCard 50, 1st Class U27": 241,
+    "BahnCard 25, 2nd Class": 59.9, // 25% discount on Flexpreis and Sparangebote&#8203;``【oaicite:8】``&#8203;
+    "BahnCard 25, 1st Class": 121.0, // 25% discount on Flexpreis and Sparangebote&#8203;``【oaicite:7】``&#8203;
+    "BahnCard 50, 2nd Class": 244.0, // 50% discount on Flexpreis and 25% on Sparangebote&#8203;``【oaicite:6】``&#8203;
+    "BahnCard 50, 1st Class": 492.0, // 50% discount on Flexpreis and 25% on Sparangebote&#8203;``【oaicite:5】``&#8203;
+    "BahnCard 100, 2nd Class": 4339.0, // Unlimited travel across Germany for one year&#8203;``【oaicite:0】``&#8203;
+    "Jugend BahnCard 25": 7.9, // For 6- to 18-year-olds
+    "Senioren BahnCard 25, 2nd Class": 38.9,
+    "Senioren BahnCard 25, 1st Class": 77.9,
+    "Senioren BahnCard 50, 2nd Class": 122.0,
+    "Senioren BahnCard 50, 1st Class": 241.0, // For seniors&#8203
+  }
 
   const suggestBahnCard = () => {
     // Convert string inputs to numbers for calculations
@@ -59,15 +59,20 @@ export const InputForm = () => {
     setBahnCardSuggestion(suggestion)
   }
 
-  // Function to get the image URL based on the BahnCard suggestion
   const getBahnCardImageUrl = () => {
     switch (bahnCardSuggestion) {
-      case "BahnCard 25":
-        return "/path/to/bahncard25.jpg" // Replace with actual image path or URL
-      case "BahnCard 50":
-        return "/path/to/bahncard50.jpg" // Replace with actual image path or URL
-      case "BahnCard 50 (Youth Discount)":
-        return "/path/to/bahncard50-youth.jpg" // Replace with actual image path or URL
+      case "BahnCard 25, 2nd Class":
+        return "../../components/bahncardimages/bahncard25-2nd"
+      case "BahnCard 25, 1st Class":
+        return "../../components/bahncardimages/bahncard25-1st"
+      case "BahnCard 50, 2nd Class":
+        return "../../components/bahncardimages/bahncard50-2nd"
+      case "BahnCard 50, 1st Class":
+        return "../../components/bahncardimages/bahncard50-1st"
+      case "BahnCard 100, 2nd Class":
+        return "../../components/bahncardimages/bahncard100-2nd"; 
+      case "BahnCard 100, 1st Class":
+        return "../../components/bahncardimages/bahncard100-1st"; 
       default:
         return ""
     }
