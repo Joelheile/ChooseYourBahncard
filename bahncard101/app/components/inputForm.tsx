@@ -23,6 +23,23 @@ export const InputForm = () => {
   const [ticketType, setTicketType] = useState("")
   const [bahnCardSuggestion, setBahnCardSuggestion] = useState("")
 
+  const bahnCardPrices = {
+    'BahnCard 25, 2nd Class': 59.90, // 25% discount on Flexpreis and Sparangebote&#8203;``【oaicite:8】``&#8203;
+    'BahnCard 25, 1st Class': 121.00, // 25% discount on Flexpreis and Sparangebote&#8203;``【oaicite:7】``&#8203;
+    'BahnCard 50, 2nd Class': 244.00, // 50% discount on Flexpreis and 25% on Sparangebote&#8203;``【oaicite:6】``&#8203;
+    'BahnCard 50, 1st Class': 492.00, // 50% discount on Flexpreis and 25% on Sparangebote&#8203;``【oaicite:5】``&#8203;
+    'Probe BahnCard 25, 2nd Class': 17.90, // Test BahnCard offering savings from the first journey&#8203;``【oaicite:4】``&#8203;
+    'Probe BahnCard 25, 1st Class': 36.90, // Test BahnCard offering savings from the first journey&#8203;``【oaicite:3】``&#8203;
+    'Probe BahnCard 50, 2nd Class': 72.90, // Test BahnCard offering savings from the first journey&#8203;``【oaicite:2】``&#8203;
+    'Probe BahnCard 50, 1st Class': 146.00, // Test BahnCard offering savings from the first journey&#8203;``【oaicite:1】``&#8203;
+    'BahnCard 100, 2nd Class': 4339.00, // Unlimited travel across Germany for one year&#8203;``【oaicite:0】``&#8203;
+    'Jugend BahnCard 25': 7.90, // For 6- to 18-year-olds
+    'Senioren BahnCard 25, 2nd Class': 38.90,
+    'Senioren BahnCard 25, 1st Class': 77.90,
+    'Senioren BahnCard 50, 2nd Class': 122.00,
+    'Senioren BahnCard 50, 1st Class': 241.00, // For seniors
+  };
+
   const suggestBahnCard = () => {
     // Convert string inputs to numbers for calculations
     const km = parseInt(kilometers)
