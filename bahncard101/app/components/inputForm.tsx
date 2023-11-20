@@ -24,6 +24,7 @@ export const InputForm = () => {
   const [ticketType, setTicketType] = useState("")
   const [classType, setClassType] = useState("")
   const [bahnCardSuggestion, setBahnCardSuggestion] = useState("")
+  const [suggestionPrice, setSuggestionPrice] = useState<string | number>("")
 
   const bahnCardPrices = {
     "BahnCard 25, 2nd Class U27": 36.9,
@@ -43,37 +44,92 @@ export const InputForm = () => {
   }
 
   const suggestBahnCard = () => {
-     // Convert string inputs to numbers for calculations
-     const km = Number(kilometers);
-     const trips = Number(tripNumber);
-     const userAge = Number(age);
-     const monthlyBudget = Number(moneyMonth);
- 
+    // Convert string inputs to numbers for calculations
+    const km = Number(kilometers)
+    const trips = Number(tripNumber)
+    const userAge = Number(age)
+    const monthlyBudget = Number(moneyMonth)
+    const trainClass = Number(classType)
 
     let suggestion = ""
+    let suggestionPrice = 0
 
-    if (userAge <= 18) {
-      suggestion = "Jugendbahncard 25"
-    } else if (
-      ticketType == "flexpreisAktion" ||
-      ticketType == "flexpreis" ||
-      monthlyBudget / trips >= 50
+    if (
+      userAge <= 18 &&
+      (ticketType == "supersparpreis" || ticketType == "sparpreis")
     ) {
-      suggestion = "Bahncard 50"
-    } else {
+      suggestion = "Jugendbahncard 25"
+      suggestionPrice = 7.9
+    }
+
+    // Bahncard 25
+    else if (
+      userAge <= 27 &&
+      (ticketType == "supersparpeis" ||
+        ticketType == "sparpreis" ||
+        monthlyBudget / trips < 50) &&
+        trainClass == 1
+    ) {
+      suggestion = "Bahncard 25 1. Klasse"
+      suggestionPrice = 77.9
+    } else if (
+      userAge <= 27 &&
+      (ticketType == "supersparpeis" ||
+        ticketType == "sparpreis" ||
+        monthlyBudget / trips < 50) &&
+        trainClass == 2
+    ) {
+      suggestion = "Bahncard 25 1. Klasse"
+      suggestionPrice = 36.9
+    }
+
+    // Bahncard 50
+    else if (
+      userAge <= 27 &&
+      (ticketType == "flexpreisAktion" ||
+        ticketType == "flexpreis" ||
+        monthlyBudget / trips >= 50) &&
+        trainClass == 1
+    ) {
+      suggestion = "Bahncard 50 1. Klasse"
+      suggestionPrice = 241
+    } else if (
+      userAge <= 27 &&
+      (ticketType == "flexpreisAktion" ||
+        ticketType == "flexpreis" ||
+        monthlyBudget / trips >= 50) &&
+        trainClass == 2
+    ) {
+      suggestion = "Bahncard 50 2. Klasse"
+      suggestionPrice = 492.0
+    }
+    // Bahncard 100
+    else if (
+      userAge <= 27 &&
+      (ticketType == "flexpreisAktion" || ticketType == "flexpreis") &&
+      (monthlyBudget / trips >= 50 || trips >= 4) &&
+      trainClass == 1
+    ) {
+      suggestion = "Bahncard 100 1. Klasse"
+      suggestionPrice = 7356
+    }
+    else if (
+        userAge <= 27 &&
+        (ticketType == "flexpreisAktion" || ticketType == "flexpreis") &&
+        (monthlyBudget / trips >= 50 || trips >= 4) &&
+        trainClass == 2
+      ) {
+        suggestion = "Bahncard 100 2. Klasse"
+        suggestionPrice = 4339
+      } 
+    
+    // else
+    else {
       suggestion = "Bahncard 25"
     }
-    /*
-    let suggestion = ""
-    if (km > 1000 || trips > 10) {
-      suggestion = userAge < 27 ? "BahnCard 50 (Youth Discount)" : "BahnCard 50"
-    } else if (daysBeforeTrip >= 7 && ticketType === "sparpreis") {
-      suggestion = "BahnCard 25"
-    } else {
-      suggestion = "BahnCard 25"
-    }
-    */
+
     setBahnCardSuggestion(suggestion)
+    setSuggestionPrice(suggestionPrice)
   }
 
   const getBahnCardImageUrl = () => {
