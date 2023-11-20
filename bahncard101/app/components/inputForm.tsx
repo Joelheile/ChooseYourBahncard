@@ -261,9 +261,10 @@ export const InputForm = () => {
         <div className="flex flex-col items-center">
           <Alert>
             <Terminal className="h-4 w-4" />
-            <AlertTitle>Heads up!</AlertTitle>
+            <AlertTitle>We've got a recommendation for you!</AlertTitle>
             <AlertDescription>
               Based on your input, we suggest the {bahnCardSuggestion}.
+              It costs {suggestionPrice} €.
             </AlertDescription>
           </Alert>
           {getBahnCardImageUrl() && (
