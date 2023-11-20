@@ -50,7 +50,7 @@ export const InputForm = () => {
     const userAge = Number(age)
     const monthlyBudget = Number(moneyMonth)
     const trainClass = Number(classType)
-
+    
     let suggestion = ""
     let suggestionPrice = 0
 
@@ -58,7 +58,7 @@ export const InputForm = () => {
       userAge <= 18 &&
       (ticketType == "supersparpreis" || ticketType == "sparpreis")
     ) {
-      suggestion = "Jugendbahncard 25"
+      suggestion = "JugendBahnCard 25"
       suggestionPrice = 7.9
     }
 
@@ -70,7 +70,7 @@ export const InputForm = () => {
         monthlyBudget / trips < 50) &&
         trainClass == 1
     ) {
-      suggestion = "Bahncard 25 1. Klasse"
+      suggestion = "BahnCard 25 1st Class"
       suggestionPrice = 77.9
     } else if (
       userAge <= 27 &&
@@ -79,7 +79,7 @@ export const InputForm = () => {
         monthlyBudget / trips < 50) &&
         trainClass == 2
     ) {
-      suggestion = "Bahncard 25 1. Klasse"
+      suggestion = "BahnCard 25 2nd Clas"
       suggestionPrice = 36.9
     }
 
@@ -91,7 +91,7 @@ export const InputForm = () => {
         monthlyBudget / trips >= 50) &&
         trainClass == 1
     ) {
-      suggestion = "Bahncard 50 1. Klasse"
+      suggestion = "BahnCard 50 1st Class"
       suggestionPrice = 241
     } else if (
       userAge <= 27 &&
@@ -100,7 +100,7 @@ export const InputForm = () => {
         monthlyBudget / trips >= 50) &&
         trainClass == 2
     ) {
-      suggestion = "Bahncard 50 2. Klasse"
+      suggestion = "BahnCard 50 2nd Clas"
       suggestionPrice = 492.0
     }
     // Bahncard 100
@@ -110,7 +110,7 @@ export const InputForm = () => {
       (monthlyBudget / trips >= 50 || trips >= 4) &&
       trainClass == 1
     ) {
-      suggestion = "Bahncard 100 1. Klasse"
+      suggestion = "BahnCard 100 1st Class"
       suggestionPrice = 7356
     }
     else if (
@@ -119,37 +119,41 @@ export const InputForm = () => {
         (monthlyBudget / trips >= 50 || trips >= 4) &&
         trainClass == 2
       ) {
-        suggestion = "Bahncard 100 2. Klasse"
+        suggestion = "BahnCard 100 2nd Class"
         suggestionPrice = 4339
       } 
     
     // else
     else {
-      suggestion = "Bahncard 25"
+      suggestion = "BahnCard 25"
     }
 
     setBahnCardSuggestion(suggestion)
     setSuggestionPrice(suggestionPrice)
+    
   }
 
   const getBahnCardImageUrl = () => {
     switch (bahnCardSuggestion) {
-      case "BahnCard 25, 2nd Class":
+        case "Youth BahnCard 25":
+            return "../../components/bahncardimages/youth-bahncard25"
+      case "BahnCard 25 2nd Class":
         return "../../components/bahncardimages/bahncard25-2nd"
-      case "BahnCard 25, 1st Class":
+      case "BahnCard 25 1st Class":
         return "../../components/bahncardimages/bahncard25-1st"
-      case "BahnCard 50, 2nd Class":
+      case "BahnCard 50 2nd Class":
         return "../../components/bahncardimages/bahncard50-2nd"
-      case "BahnCard 50, 1st Class":
+      case "BahnCard 50 1st Class":
         return "../../components/bahncardimages/bahncard50-1st"
-      case "BahnCard 100, 2nd Class":
+      case "BahnCard 100 2nd Class":
         return "../../components/bahncardimages/bahncard100-2nd"
-      case "BahnCard 100, 1st Class":
+      case "BahnCard 100 1st Class":
         return "../../components/bahncardimages/bahncard100-1st"
       default:
         return ""
     }
   }
+  
 
   return (
     <div className="flex flex-col gap-10 mt-10">
