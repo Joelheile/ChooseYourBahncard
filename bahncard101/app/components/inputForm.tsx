@@ -17,10 +17,10 @@ import {
 } from "@/components/ui/select"
 
 export const InputForm = () => {
-  const [kilometers, setKilometers] = useState("")
-  const [tripNumber, setTripNumber] = useState("")
-  const [age, setAge] = useState("")
-  const [daysUntilTrip, setDaysUntilTrip] = useState("")
+  const [kilometers, setKilometers] = useState<string | number>("")
+  const [tripNumber, setTripNumber] = useState<string | number>("")
+  const [age, setAge] = useState<string | number>("")
+  const [moneyMonth, setMoneyMonth] = useState<string | number>("")
   const [ticketType, setTicketType] = useState("")
   const [classType, setClassType] = useState("")
   const [bahnCardSuggestion, setBahnCardSuggestion] = useState("")
@@ -30,11 +30,11 @@ export const InputForm = () => {
     "BahnCard 25, 1st Class U27": 77.9,
     "BahnCard 50, 2nd Class U27": 69.9,
     "BahnCard 50, 1st Class U27": 241,
-    "BahnCard 25, 2nd Class": 59.9, // 25% discount on Flexpreis and Sparangebote&#8203;``【oaicite:8】``&#8203;
-    "BahnCard 25, 1st Class": 121.0, // 25% discount on Flexpreis and Sparangebote&#8203;``【oaicite:7】``&#8203;
-    "BahnCard 50, 2nd Class": 244.0, // 50% discount on Flexpreis and 25% on Sparangebote&#8203;``【oaicite:6】``&#8203;
-    "BahnCard 50, 1st Class": 492.0, // 50% discount on Flexpreis and 25% on Sparangebote&#8203;``【oaicite:5】``&#8203;
-    "BahnCard 100, 2nd Class": 4339.0, // Unlimited travel across Germany for one year&#8203;``【oaicite:0】``&#8203;
+    "BahnCard 25, 2nd Class": 59.9, // 25% discount on Flexpreis and Sparangebote
+    "BahnCard 25, 1st Class": 121.0, // 25% discount on Flexpreis and Sparangebote
+    "BahnCard 50, 2nd Class": 244.0, // 50% discount on Flexpreis and 25% on Sparangebote
+    "BahnCard 50, 1st Class": 492.0, // 50% discount on Flexpreis and 25% on Sparangebote
+    "BahnCard 100, 2nd Class": 4339.0, // Unlimited travel across Germany for one year
     "Jugend BahnCard 25": 7.9, // For 6- to 18-year-olds
     "Senioren BahnCard 25, 2nd Class": 38.9,
     "Senioren BahnCard 25, 1st Class": 77.9,
@@ -43,12 +43,27 @@ export const InputForm = () => {
   }
 
   const suggestBahnCard = () => {
-    // Convert string inputs to numbers for calculations
-    const km = parseInt(kilometers)
-    const trips = parseInt(tripNumber)
-    const userAge = parseInt(age)
-    const daysBeforeTrip = parseInt(daysUntilTrip)
+     // Convert string inputs to numbers for calculations
+     const km = Number(kilometers);
+     const trips = Number(tripNumber);
+     const userAge = Number(age);
+     const monthlyBudget = Number(moneyMonth);
+ 
 
+    let suggestion = ""
+
+    if (userAge <= 18) {
+      suggestion = "Jugendbahncard 25"
+    } else if (
+      ticketType == "flexpreisAktion" ||
+      ticketType == "flexpreis" ||
+      monthlyBudget / trips >= 50
+    ) {
+      suggestion = "Bahncard 50"
+    } else {
+      suggestion = "Bahncard 25"
+    }
+    /*
     let suggestion = ""
     if (km > 1000 || trips > 10) {
       suggestion = userAge < 27 ? "BahnCard 50 (Youth Discount)" : "BahnCard 50"
@@ -57,7 +72,7 @@ export const InputForm = () => {
     } else {
       suggestion = "BahnCard 25"
     }
-
+    */
     setBahnCardSuggestion(suggestion)
   }
 
@@ -100,7 +115,7 @@ export const InputForm = () => {
         <div className="grid w-full max-w-sm items-center gap-1.5">
           <Label>
             How many trips do you do where a ticket would be reasonable? (Per
-            Month)
+            month)
           </Label>
           <Input
             type="number"
@@ -129,15 +144,15 @@ export const InputForm = () => {
         </div>
 
         <div className="grid w-full max-w-sm items-center gap-1.5">
-          <Label>How many days do you usually book a trip beforehand?</Label>
+          <Label>How much money do you donate to DB every month?</Label>
           <Input
             type="number"
             pattern="[0-9]*"
-            id="daysUntilTrip"
+            id="moneyMonth"
             placeholder=""
-            value={daysUntilTrip}
+            value={moneyMonth}
             onChange={(e) => {
-              setDaysUntilTrip(e.currentTarget.value)
+              setMoneyMonth(e.currentTarget.value)
             }}
           />
         </div>
