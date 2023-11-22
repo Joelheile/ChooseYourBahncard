@@ -5,7 +5,7 @@ import Link from "next/link"
 import { siteConfig } from "@/config/site"
 import { buttonVariants } from "@/components/ui/button"
 
-import {InputForm} from "./components/InputForm";
+import {InputForm} from "./components/inputForm";
 
 export default function IndexPage() {
   return (

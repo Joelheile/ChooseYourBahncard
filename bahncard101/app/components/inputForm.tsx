@@ -1,9 +1,29 @@
+<<<<<<< HEAD
 import { Button } from "@/components/ui/button";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import {useState}  from 'react';
 
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+=======
+import { useState } from "react"
+import { Terminal } from "lucide-react"
+
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+>>>>>>> parent of d4436a4 (refactored into different files)
 
 export const InputForm = () => {
   const [kilometers, setKilometers] = useState<string | number>("")
@@ -15,6 +35,7 @@ export const InputForm = () => {
   const [bahnCardSuggestion, setBahnCardSuggestion] = useState("")
   const [suggestionPrice, setSuggestionPrice] = useState<string | number>("")
 
+<<<<<<< HEAD
   const bahnCardPrices = {
     "BahnCard 25, 2nd Class U27": 36.9,
     "BahnCard 25, 1st Class U27": 77.9,
@@ -32,6 +53,8 @@ export const InputForm = () => {
     "Senioren BahnCard 50, 1st Class": 241.0, // For seniors&#8203
   }
 
+=======
+>>>>>>> parent of d4436a4 (refactored into different files)
   const suggestBahnCard = () => {
     // Convert string inputs to numbers for calculations
     const km = Number(kilometers)
@@ -43,6 +66,7 @@ export const InputForm = () => {
     let suggestion = ""
     let suggestionPrice = 0
 
+<<<<<<< HEAD
     // tests
     console.log(km)
     console.log(trips)
@@ -50,6 +74,8 @@ export const InputForm = () => {
     console.log(monthlyBudget)
     console.log(trainClass)
 
+=======
+>>>>>>> parent of d4436a4 (refactored into different files)
     if (
       userAge <= 18 &&
       (ticketType == "supersparpreis" || ticketType == "sparpreis")
@@ -184,6 +210,7 @@ export const InputForm = () => {
 
   return (
     <div className="flex flex-col gap-10 mt-10">
+<<<<<<< HEAD
       {/* Kilometers Input */}
       <Input
         label="How many kilometers do you drive in a month with trains?"
@@ -213,23 +240,121 @@ export const InputForm = () => {
       />
 
       
+=======
+      {/* Top Row with Input Fields */}
+      <div>
+        <Label>How many kilometers do you drive in a month with trains?</Label>
+        <Input
+          type="number"
+          pattern="[0-9]*"
+          id="kilometers"
+          placeholder=""
+          value={kilometers}
+          onChange={(e) => {
+            setKilometers(e.currentTarget.value)
+          }}
+        />
+      </div>
+      <div className="grid grid-cols-2 gap-4">
+        <div className="grid w-full max-w-sm items-center gap-1.5">
+          <Label>
+            How many trips do you do where a ticket would be reasonable? (Per
+            month)
+          </Label>
+          <Input
+            type="number"
+            pattern="[0-9]*"
+            id="tripNumber"
+            placeholder=""
+            value={tripNumber}
+            onChange={(e) => {
+              setTripNumber(e.currentTarget.value)
+            }}
+          />
+        </div>
 
-      {/* Suggestion Button */}
-      <Button onClick={calculateSuggestion}>Find My BahnCard</Button>
+        <div className="grid w-full max-w-sm items-center gap-1.5">
+          <Label>How old are you?</Label>
+          <Input
+            type="number"
+            pattern="[0-9]*"
+            id="age"
+            placeholder=""
+            value={age}
+            onChange={(e) => {
+              setAge(e.currentTarget.value)
+            }}
+          />
+        </div>
 
-      {/* BahnCard Suggestion Display */}
+        <div className="grid w-full max-w-sm items-center gap-1.5">
+          <Label>How much money do you donate to DB every month?</Label>
+          <Input
+            type="number"
+            pattern="[0-9]*"
+            id="moneyMonth"
+            placeholder=""
+            value={moneyMonth}
+            onChange={(e) => {
+              setMoneyMonth(e.currentTarget.value)
+            }}
+          />
+        </div>
+        <div className="grid w-full max-w-sm items-center gap-1.5">
+          <Label>Which class do you you usually in?</Label>
+
+          <RadioGroup value={classType} onValueChange={(e) => setClassType(e)}>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="1" id="first-class" />
+              <Label htmlFor="first-class">First Class</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="2" id="second-class" />
+              <Label htmlFor="second-class">Second Class</Label>
+            </div>
+          </RadioGroup>
+        </div>
+
+        <div className="grid w-full max-w-sm items-center gap-1.5">
+          <Label>Which type of ticket do you buy usually?</Label>
+>>>>>>> parent of d4436a4 (refactored into different files)
+
+          <Select value={ticketType} onValueChange={(e) => setTicketType(e)}>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Choose type" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Choose one</SelectLabel>
+                <SelectItem value="supersparpreis">Super Sparpreis</SelectItem>
+                <SelectItem value="sparpreis">Sparpreis</SelectItem>
+                <SelectItem value="flexpreisAktion">
+                  Flexpreis Aktion
+                </SelectItem>
+                <SelectItem value="flexpreis">Flexpreis</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </div>
+
+        <div>
+          <Button onClick={suggestBahnCard}>Find My BahnCard</Button>
+        </div>
+      </div>
+      {/* Row Below with BahnCard Suggestion and Image */}
       {bahnCardSuggestion && (
         <div className="flex flex-col items-center">
           <Alert>
+            <Terminal className="h-4 w-4" />
             <AlertTitle>We've got a recommendation for you!</AlertTitle>
             <AlertDescription>
               Based on your input, we suggest the {bahnCardSuggestion}. It costs{" "}
               {suggestionPrice} €.
             </AlertDescription>
-            </Alert>
-          {imageUrl && (
+          </Alert>
+          {getBahnCardImageUrl() && (
             <img
-              src={imageUrl}
+              src={getBahnCardImageUrl()}
               alt="BahnCard Suggestion"
               className="mt-4"
             />
@@ -237,5 +362,5 @@ export const InputForm = () => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
