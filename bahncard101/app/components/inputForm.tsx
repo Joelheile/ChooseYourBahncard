@@ -1,25 +1,10 @@
-import { useBahnCard } from '../hooks/useBahnCard';
-import { InputField } from './inputField';
 import { Button } from "@/components/ui/button";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+import {useState}  from 'react';
 
-export const InputForm: React.FC = () => {
-  const {
-    kilometers, setKilometers,
-    tripNumber, setTripNumber,
-    age, setAge,
-    moneyMonth, setMoneyMonth,
-    ticketType, setTicketType,
-    classType, setClassType,
-    calculateSuggestion,
-    imageUrl,
-    bahnCardSuggestion,
-    suggestionPrice
-  } = useBahnCard();
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 
-<<<<<<< HEAD
-return (
-=======
 export const InputForm = () => {
   const [kilometers, setKilometers] = useState<string | number>("")
   const [tripNumber, setTripNumber] = useState<string | number>("")
@@ -198,38 +183,36 @@ export const InputForm = () => {
   }
 
   return (
->>>>>>> parent of dd4c26c (deleted unnecessary code)
     <div className="flex flex-col gap-10 mt-10">
       {/* Kilometers Input */}
-      <InputField
+      <Input
         label="How many kilometers do you drive in a month with trains?"
         value={kilometers}
         onChange={(e) => setKilometers(e.currentTarget.value)}
       />
 
       {/* Trip Number Input */}
-      <InputField
+      <Input
         label="How many trips do you do where a ticket would be reasonable? (Per month)"
         value={tripNumber}
         onChange={(e) => setTripNumber(e.currentTarget.value)}
       />
 
       {/* Age Input */}
-      <InputField
+      <Input
         label="How old are you?"
         value={age}
         onChange={(e) => setAge(e.currentTarget.value)}
       />
 
       {/* Money per Month Input */}
-      <InputField
+      <Input
         label="How much money do you spend on trains each month?"
         value={moneyMonth}
         onChange={(e) => setMoneyMonth(e.currentTarget.value)}
       />
 
-      {/* Class Type and Ticket Type Selection - Add your own components or logic here */}
-      {/* ... */}
+      
 
       {/* Suggestion Button */}
       <Button onClick={calculateSuggestion}>Find My BahnCard</Button>
