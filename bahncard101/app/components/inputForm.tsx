@@ -54,34 +54,28 @@ export const InputForm = () => {
     let suggestion = ""
     let suggestionPrice = 0
 
+    // tests
+    console.log(km)
+    console.log(trips)
+    console.log(userAge)
+    console.log(monthlyBudget)
+    console.log(trainClass)
 
     if (
       userAge <= 18 &&
       (ticketType == "supersparpreis" || ticketType == "sparpreis")
     ) {
-      suggestion = "JugendBahnCard 25"
+      suggestion = "JugendBahncard 25"
       suggestionPrice = 7.9
     }
 
-    // Bahncard 25
-    else if (
-      userAge <= 27 &&
-      (ticketType == "supersparpeis" ||
-        ticketType == "sparpreis" ||
-        monthlyBudget / trips < 50) &&
-        trainClass == 1
-    ) {
-      suggestion = "BahnCard 25 1st Class"
-      suggestionPrice = 77.9
-    } else if (
-      userAge <= 27 &&
-      (ticketType == "supersparpeis" ||
-        ticketType == "sparpreis" ||
-        monthlyBudget / trips < 50) &&
-        trainClass == 2
-    ) {
-      suggestion = "BahnCard 25 2nd Clas"
-      suggestionPrice = 36.9
+    // Bahncard 100
+    else if (monthlyBudget >= (7356 / 12) && trainClass == 1) {
+      suggestion = "BahnCard 100 1st Class"
+      suggestionPrice = 7356
+    } else if (monthlyBudget >= (4339 / 12) && trainClass == 2) {
+      suggestion = "BahnCard 100 2nd Class"
+      suggestionPrice = 4339
     }
 
     // Bahncard 50
@@ -90,7 +84,7 @@ export const InputForm = () => {
       (ticketType == "flexpreisAktion" ||
         ticketType == "flexpreis" ||
         monthlyBudget / trips >= 50) &&
-        trainClass == 1
+      trainClass == 1
     ) {
       suggestion = "BahnCard 50 1st Class"
       suggestionPrice = 241
@@ -99,39 +93,48 @@ export const InputForm = () => {
       (ticketType == "flexpreisAktion" ||
         ticketType == "flexpreis" ||
         monthlyBudget / trips >= 50) &&
-        trainClass == 2
+      trainClass == 2
     ) {
       suggestion = "BahnCard 50 2nd Clas"
       suggestionPrice = 492.0
     }
-    // Bahncard 100
-    else if (
-        monthlyBudget / 12 >= 7356 / 12 && trainClass == 1
-    ) {
-      suggestion = "BahnCard 100 1st Class"
-      suggestionPrice = 7356
-    }
-    else if (
-        monthlyBudget / 12 >= 4339 / 12 && trainClass == 2
-      ) {
-        suggestion = "BahnCard 100 2nd Class"
-        suggestionPrice = 4339
-      } 
     
+
+    // Bahncard 25
+    else if (
+      userAge <= 27 &&
+      (ticketType == "supersparpeis" ||
+        ticketType == "sparpreis" ||
+        monthlyBudget / trips < 50) &&
+      trainClass == 1
+    ) {
+      suggestion = "BahnCard 25 1st Class"
+      suggestionPrice = 77.9
+    } else if (
+      userAge <= 27 &&
+      (ticketType == "supersparpeis" ||
+        ticketType == "sparpreis" ||
+        monthlyBudget / trips < 50) &&
+      trainClass == 2
+    ) {
+      suggestion = "BahnCard 25 2nd Clas"
+      suggestionPrice = 36.9
+    }
+
     // else
     else {
       suggestion = "BahnCard 25"
+      suggestionPrice = 59.9
     }
 
     setBahnCardSuggestion(suggestion)
     setSuggestionPrice(suggestionPrice)
-    
   }
 
   const getBahnCardImageUrl = () => {
     switch (bahnCardSuggestion) {
-        case "Youth BahnCard 25":
-            return "../../components/bahncardimages/youth-bahncard25"
+      case "JugendBahncard 25":
+        return "../../components/bahncardimages/youth-bahncard25"
       case "BahnCard 25 2nd Class":
         return "../../components/bahncardimages/bahncard25-2nd"
       case "BahnCard 25 1st Class":
@@ -143,12 +146,14 @@ export const InputForm = () => {
       case "BahnCard 100 2nd Class":
         return "../../components/bahncardimages/bahncard100-2nd"
       case "BahnCard 100 1st Class":
-        return "../../components/bahncardimages/bahncard100-1st"
+        return "bahncard101/components/bahncardimages/bahncard100-1st"
+        
+
       default:
         return ""
     }
+    console.log(getBahnCardImageUrl)
   }
-  
 
   return (
     <div className="flex flex-col gap-10 mt-10">
@@ -216,11 +221,11 @@ export const InputForm = () => {
 
           <RadioGroup value={classType} onValueChange={(e) => setClassType(e)}>
             <div className="flex items-center space-x-2">
-              <RadioGroupItem value="first-class" id="first-class" />
+              <RadioGroupItem value="1" id="first-class" />
               <Label htmlFor="first-class">First Class</Label>
             </div>
             <div className="flex items-center space-x-2">
-              <RadioGroupItem value="second-class" id="second-class" />
+              <RadioGroupItem value="2" id="second-class" />
               <Label htmlFor="second-class">Second Class</Label>
             </div>
           </RadioGroup>
@@ -258,8 +263,8 @@ export const InputForm = () => {
             <Terminal className="h-4 w-4" />
             <AlertTitle>We've got a recommendation for you!</AlertTitle>
             <AlertDescription>
-              Based on your input, we suggest the {bahnCardSuggestion}.
-              It costs {suggestionPrice} €.
+              Based on your input, we suggest the {bahnCardSuggestion}. It costs{" "}
+              {suggestionPrice} €.
             </AlertDescription>
           </Alert>
           {getBahnCardImageUrl() && (
