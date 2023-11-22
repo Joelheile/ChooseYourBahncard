@@ -1,11 +1,4 @@
-<<<<<<< HEAD
-import { Button } from "@/components/ui/button";
-import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
-import {useState}  from 'react';
 
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-=======
 import { useState } from "react"
 import { Terminal } from "lucide-react"
 
@@ -23,7 +16,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
->>>>>>> parent of d4436a4 (refactored into different files)
+
 
 export const InputForm = () => {
   const [kilometers, setKilometers] = useState<string | number>("")
@@ -35,7 +28,7 @@ export const InputForm = () => {
   const [bahnCardSuggestion, setBahnCardSuggestion] = useState("")
   const [suggestionPrice, setSuggestionPrice] = useState<string | number>("")
 
-<<<<<<< HEAD
+
   const bahnCardPrices = {
     "BahnCard 25, 2nd Class U27": 36.9,
     "BahnCard 25, 1st Class U27": 77.9,
@@ -53,8 +46,7 @@ export const InputForm = () => {
     "Senioren BahnCard 50, 1st Class": 241.0, // For seniors&#8203
   }
 
-=======
->>>>>>> parent of d4436a4 (refactored into different files)
+
   const suggestBahnCard = () => {
     // Convert string inputs to numbers for calculations
     const km = Number(kilometers)
@@ -66,7 +58,7 @@ export const InputForm = () => {
     let suggestion = ""
     let suggestionPrice = 0
 
-<<<<<<< HEAD
+
     // tests
     console.log(km)
     console.log(trips)
@@ -74,8 +66,6 @@ export const InputForm = () => {
     console.log(monthlyBudget)
     console.log(trainClass)
 
-=======
->>>>>>> parent of d4436a4 (refactored into different files)
     if (
       userAge <= 18 &&
       (ticketType == "supersparpreis" || ticketType == "sparpreis")
@@ -210,37 +200,6 @@ export const InputForm = () => {
 
   return (
     <div className="flex flex-col gap-10 mt-10">
-<<<<<<< HEAD
-      {/* Kilometers Input */}
-      <Input
-        label="How many kilometers do you drive in a month with trains?"
-        value={kilometers}
-        onChange={(e) => setKilometers(e.currentTarget.value)}
-      />
-
-      {/* Trip Number Input */}
-      <Input
-        label="How many trips do you do where a ticket would be reasonable? (Per month)"
-        value={tripNumber}
-        onChange={(e) => setTripNumber(e.currentTarget.value)}
-      />
-
-      {/* Age Input */}
-      <Input
-        label="How old are you?"
-        value={age}
-        onChange={(e) => setAge(e.currentTarget.value)}
-      />
-
-      {/* Money per Month Input */}
-      <Input
-        label="How much money do you spend on trains each month?"
-        value={moneyMonth}
-        onChange={(e) => setMoneyMonth(e.currentTarget.value)}
-      />
-
-      
-=======
       {/* Top Row with Input Fields */}
       <div>
         <Label>How many kilometers do you drive in a month with trains?</Label>
@@ -317,7 +276,6 @@ export const InputForm = () => {
 
         <div className="grid w-full max-w-sm items-center gap-1.5">
           <Label>Which type of ticket do you buy usually?</Label>
->>>>>>> parent of d4436a4 (refactored into different files)
 
           <Select value={ticketType} onValueChange={(e) => setTicketType(e)}>
             <SelectTrigger className="w-[180px]">
