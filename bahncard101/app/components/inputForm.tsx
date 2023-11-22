@@ -50,7 +50,7 @@ export const InputForm = () => {
     const userAge = Number(age)
     const monthlyBudget = Number(moneyMonth)
     const trainClass = Number(classType)
-    
+
     let suggestion = ""
     let suggestionPrice = 0
 
@@ -66,19 +66,18 @@ export const InputForm = () => {
       (ticketType == "supersparpreis" || ticketType == "sparpreis")
     ) {
       suggestion = "JugendBahncard 25"
-      suggestionPrice = 7.9
+      suggestionPrice = 7.90
     }
 
     // Bahncard 100
-    else if (monthlyBudget >= (7356 / 12) && trainClass == 1) {
+    else if (monthlyBudget >= 7356 / 12 && trainClass == 1) {
       suggestion = "BahnCard 100 1st Class"
       suggestionPrice = 7356
-    } else if (monthlyBudget >= (4339 / 12) && trainClass == 2) {
+    } else if (monthlyBudget >= 4339 / 12 && trainClass == 2) {
       suggestion = "BahnCard 100 2nd Class"
       suggestionPrice = 4339
     }
-
-    // Bahncard 50
+    // MyBahncard 50 (Jugend)
     else if (
       userAge <= 27 &&
       (ticketType == "flexpreisAktion" ||
@@ -96,11 +95,30 @@ export const InputForm = () => {
       trainClass == 2
     ) {
       suggestion = "BahnCard 50 2nd Clas"
-      suggestionPrice = 492.0
+      suggestionPrice = 69.90
     }
-    
+    // Bahncard 50
+    else if (
+      userAge > 27 &&
+      (ticketType == "flexpreisAktion" ||
+        ticketType == "flexpreis" ||
+        monthlyBudget / trips >= 50) &&
+      trainClass == 1
+    ) {
+      suggestion = "BahnCard 50 1st Class"
+      suggestionPrice = 241
+    } else if (
+      userAge > 27 &&
+      (ticketType == "flexpreisAktion" ||
+        ticketType == "flexpreis" ||
+        monthlyBudget / trips >= 50) &&
+      trainClass == 2
+    ) {
+      suggestion = "BahnCard 50 2nd Clas"
+      suggestionPrice = 492
+    }
 
-    // Bahncard 25
+    // MyBahncard 25
     else if (
       userAge <= 27 &&
       (ticketType == "supersparpeis" ||
@@ -109,7 +127,7 @@ export const InputForm = () => {
       trainClass == 1
     ) {
       suggestion = "BahnCard 25 1st Class"
-      suggestionPrice = 77.9
+      suggestionPrice = 77.90
     } else if (
       userAge <= 27 &&
       (ticketType == "supersparpeis" ||
@@ -118,13 +136,34 @@ export const InputForm = () => {
       trainClass == 2
     ) {
       suggestion = "BahnCard 25 2nd Clas"
-      suggestionPrice = 36.9
+      suggestionPrice = 36.90
+    }
+
+    // Bahncard 25
+    else if (
+      userAge > 27 &&
+      (ticketType == "supersparpeis" ||
+        ticketType == "sparpreis" ||
+        monthlyBudget / trips < 50) &&
+      trainClass == 1
+    ) {
+      suggestion = "BahnCard 25 1st Class"
+      suggestionPrice = 121
+    } else if (
+      userAge > 27 &&
+      (ticketType == "supersparpeis" ||
+        ticketType == "sparpreis" ||
+        monthlyBudget / trips < 50) &&
+      trainClass == 2
+    ) {
+      suggestion = "BahnCard 25 2nd Clas"
+      suggestionPrice = 59.90
     }
 
     // else
     else {
-      suggestion = "BahnCard 25"
-      suggestionPrice = 59.9
+      suggestion = "BahnCard 25 2nd Class"
+      suggestionPrice = 59.90
     }
 
     setBahnCardSuggestion(suggestion)
@@ -147,7 +186,6 @@ export const InputForm = () => {
         return "../../components/bahncardimages/bahncard100-2nd"
       case "BahnCard 100 1st Class":
         return "bahncard101/components/bahncardimages/bahncard100-1st"
-        
 
       default:
         return ""
