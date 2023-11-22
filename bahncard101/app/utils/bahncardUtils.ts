@@ -9,6 +9,8 @@ export const suggestBahnCard = (
     let suggestion = ""
     let suggestionPrice = 0
 
+    console.log(userAge, ticketType, monthlyBudget, trips, trainClass)
+
     if (
       userAge <= 18 &&
       (ticketType == "supersparpreis" || ticketType == "sparpreis")
