@@ -26,23 +26,6 @@ export const InputForm = () => {
   const [bahnCardSuggestion, setBahnCardSuggestion] = useState("")
   const [suggestionPrice, setSuggestionPrice] = useState<string | number>("")
 
-  const bahnCardPrices = {
-    "BahnCard 25, 2nd Class U27": 36.9,
-    "BahnCard 25, 1st Class U27": 77.9,
-    "BahnCard 50, 2nd Class U27": 69.9,
-    "BahnCard 50, 1st Class U27": 241,
-    "BahnCard 25, 2nd Class": 59.9, // 25% discount on Flexpreis and Sparangebote
-    "BahnCard 25, 1st Class": 121.0, // 25% discount on Flexpreis and Sparangebote
-    "BahnCard 50, 2nd Class": 244.0, // 50% discount on Flexpreis and 25% on Sparangebote
-    "BahnCard 50, 1st Class": 492.0, // 50% discount on Flexpreis and 25% on Sparangebote
-    "BahnCard 100, 2nd Class": 4339.0, // Unlimited travel across Germany for one year
-    "Jugend BahnCard 25": 7.9, // For 6- to 18-year-olds
-    "Senioren BahnCard 25, 2nd Class": 38.9,
-    "Senioren BahnCard 25, 1st Class": 77.9,
-    "Senioren BahnCard 50, 2nd Class": 122.0,
-    "Senioren BahnCard 50, 1st Class": 241.0, // For seniors&#8203
-  }
-
   const suggestBahnCard = () => {
     // Convert string inputs to numbers for calculations
     const km = Number(kilometers)
@@ -53,13 +36,6 @@ export const InputForm = () => {
 
     let suggestion = ""
     let suggestionPrice = 0
-
-    // tests
-    console.log(km)
-    console.log(trips)
-    console.log(userAge)
-    console.log(monthlyBudget)
-    console.log(trainClass)
 
     if (
       userAge <= 18 &&
