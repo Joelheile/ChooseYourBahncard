@@ -1,4 +1,3 @@
-
 import { useState } from "react"
 import { Terminal } from "lucide-react"
 
@@ -17,7 +16,6 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
-
 export const InputForm = () => {
   const [kilometers, setKilometers] = useState<string | number>("")
   const [tripNumber, setTripNumber] = useState<string | number>("")
@@ -27,7 +25,6 @@ export const InputForm = () => {
   const [classType, setClassType] = useState("")
   const [bahnCardSuggestion, setBahnCardSuggestion] = useState("")
   const [suggestionPrice, setSuggestionPrice] = useState<string | number>("")
-
 
   const bahnCardPrices = {
     "BahnCard 25, 2nd Class U27": 36.9,
@@ -46,7 +43,6 @@ export const InputForm = () => {
     "Senioren BahnCard 50, 1st Class": 241.0, // For seniors&#8203
   }
 
-
   const suggestBahnCard = () => {
     // Convert string inputs to numbers for calculations
     const km = Number(kilometers)
@@ -58,20 +54,20 @@ export const InputForm = () => {
     let suggestion = ""
     let suggestionPrice = 0
 
-
-    // tests
+    /* # TESTS
     console.log(km)
     console.log(trips)
     console.log(userAge)
     console.log(monthlyBudget)
     console.log(trainClass)
+    */
 
     if (
       userAge <= 18 &&
       (ticketType == "supersparpreis" || ticketType == "sparpreis")
     ) {
       suggestion = "JugendBahncard 25"
-      suggestionPrice = 7.90
+      suggestionPrice = 7.9
     }
 
     // Bahncard 100
@@ -100,7 +96,7 @@ export const InputForm = () => {
       trainClass == 2
     ) {
       suggestion = "BahnCard 50 2nd Clas"
-      suggestionPrice = 69.90
+      suggestionPrice = 69.9
     }
     // Bahncard 50
     else if (
@@ -132,7 +128,7 @@ export const InputForm = () => {
       trainClass == 1
     ) {
       suggestion = "BahnCard 25 1st Class"
-      suggestionPrice = 77.90
+      suggestionPrice = 77.9
     } else if (
       userAge <= 27 &&
       (ticketType == "supersparpeis" ||
@@ -141,7 +137,7 @@ export const InputForm = () => {
       trainClass == 2
     ) {
       suggestion = "BahnCard 25 2nd Clas"
-      suggestionPrice = 36.90
+      suggestionPrice = 36.9
     }
 
     // Bahncard 25
@@ -162,13 +158,13 @@ export const InputForm = () => {
       trainClass == 2
     ) {
       suggestion = "BahnCard 25 2nd Clas"
-      suggestionPrice = 59.90
+      suggestionPrice = 59.9
     }
 
     // else
     else {
       suggestion = "BahnCard 25 2nd Class"
-      suggestionPrice = 59.90
+      suggestionPrice = 59.9
     }
 
     setBahnCardSuggestion(suggestion)
@@ -178,25 +174,25 @@ export const InputForm = () => {
   const getBahnCardImageUrl = () => {
     switch (bahnCardSuggestion) {
       case "JugendBahncard 25":
-        return "../../components/bahncardimages/youth-bahncard25"
+        return "/components/bahncardimages/youth-bahncard25.png"
       case "BahnCard 25 2nd Class":
-        return "../../components/bahncardimages/bahncard25-2nd"
+        return "/components/bahncardimages/bahncard25-2nd.png"
       case "BahnCard 25 1st Class":
-        return "../../components/bahncardimages/bahncard25-1st"
+        return "/components/bahncardimages/bahncard25-1st.png"
       case "BahnCard 50 2nd Class":
-        return "../../components/bahncardimages/bahncard50-2nd"
+        return "/components/bahncardimages/bahncard50-2nd.png"
       case "BahnCard 50 1st Class":
-        return "../../components/bahncardimages/bahncard50-1st"
+        return "/components/bahncardimages/bahncard50-1st.png"
       case "BahnCard 100 2nd Class":
-        return "../../components/bahncardimages/bahncard100-2nd"
+        return "/components/bahncardimages/bahncard100-2nd.png"
       case "BahnCard 100 1st Class":
-        return "bahncard101/components/bahncardimages/bahncard100-1st"
-
+        return "/components/bahncardimages/bahncard100-1st.png"
       default:
-        return ""
+        return undefined // Return null if no matching case is found
     }
-    console.log(getBahnCardImageUrl)
   }
+  
+  
 
   return (
     <div className="flex flex-col gap-10 mt-10">
@@ -310,13 +306,17 @@ export const InputForm = () => {
               {suggestionPrice} €.
             </AlertDescription>
           </Alert>
-          {getBahnCardImageUrl() && (
+          {/* 
+          {getBahnCardImageUrl() ? (
             <img
               src={getBahnCardImageUrl()}
               alt="BahnCard Suggestion"
               className="mt-4"
             />
+          ) : (
+            <p>No image available for this BahnCard.</p>
           )}
+          */}
         </div>
       )}
     </div>

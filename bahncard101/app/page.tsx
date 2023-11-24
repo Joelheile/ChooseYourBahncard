@@ -18,8 +18,7 @@ export default function IndexPage() {
         </h1>
         <p className="max-w-[700px] text-lg text-muted-foreground">
           I'm Joe, your personal helper figuring out which Bahncard you would
-          like to use. <br />
-          asdfök
+          like to use.
         </p>
       </div>
       <InputForm/>
